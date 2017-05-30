@@ -10,7 +10,7 @@
 
 #include "fsm.h"
 
-FSM::FSM(FestoProcessAccess *process, Plugin* plugin = 0) {
+FSM::FSM(FestoProcessAccess *process, Plugin* plugin) {
     this->process = process;
     currentState = Start;
     this->plugin = plugin;
@@ -56,9 +56,13 @@ void FSM::evalEvents() {
             if (process->isItemAtMetalDetector()) {
                 currentState = MetalDetection;
             }
-			/* if(process->isItemAtHightSensor){
-				currentState = HeightDetection;
-			} */
+
+// Neuer Code anfang
+            if(plugin->result() == false){
+            	currentState = ReverseTransport;
+            }
+// Neuer Code ende
+
             if (process->isItemAtEnd()) {
                 currentState = Error;
             }
@@ -113,7 +117,10 @@ void FSM::evalEvents() {
                 currentState = Standby;
             }
             break;
-		/* case HeightDetection:
+
+// Neuer Code anfang
+            /*
+		case HeightDetection:
 			if(plugin->result() == true){
 				currentState = Transport;
 			}	
@@ -124,6 +131,7 @@ void FSM::evalEvents() {
 				currentState = Error;
 			}
 			break;
+			*/
 		case ReverseTransport:
 			if(process->isItemAtBeginning()){
 				currentState = StartReached;
@@ -138,7 +146,9 @@ void FSM::evalEvents() {
 			}	
 			if(process->isItemAtMetalDetector() || process->isItemAtHightSensor() || process->isItemAtEnd()){
 				currentState = Error;
-			}	 */
+			}
+			break;
+// Neuer Code ende
         default:
             currentState = Start;
     }
@@ -215,13 +225,16 @@ void FSM::evalState() {
             process->closeJunction();
             blinkRed();
             break;
-		/* case HeightDetection:
+// Neuer Code anfang
+            /*
+		case HeightDetection:
 			process->driveRight();
             process->lightGreenOn();
             process->lightRedOff();
             process->lightYellowOff();
             process->turnLEDStartOff();
 		break;
+			*/
 		case ReverseTransport:
 			process->driveStop();
 			process->lightGreenOff();
@@ -233,7 +246,8 @@ void FSM::evalState() {
 			process->driveStop();
 			process->lightGreenOff();
             process->lightYellowOff();
-		break; */
+		break;
+// Neuer Code anfang
     }
 }
 

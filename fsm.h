@@ -13,7 +13,7 @@
 #include "FestoProcessAccess.h"
 #include "plugin.h"
 
-enum fsm_states { Start, Standby, Ready, Transport, MetalDetection, NonMetalic, Metalic, SlideReached, Error, EndReached}; // , HeightDetection, ReverseTransport , StartReached };
+enum fsm_states { Start, Standby, Ready, Transport, MetalDetection, NonMetalic, Metalic, SlideReached, Error, EndReached, HeightDetection, ReverseTransport , StartReached };
 
 class FSM {
 private:
