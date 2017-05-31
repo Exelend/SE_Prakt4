@@ -225,7 +225,7 @@ void FSM::evalState() {
             process->closeJunction();
             blinkRed();
             break;
-// Neuer Code anfang
+// Neuer Code Anfang
             /*
 		case HeightDetection:
 			process->driveRight();
@@ -247,7 +247,7 @@ void FSM::evalState() {
 			process->lightGreenOff();
             process->lightYellowOff();
 		break;
-// Neuer Code anfang
+// Neuer Code Ende
     }
 }
 
