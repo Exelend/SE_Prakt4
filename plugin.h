@@ -12,6 +12,8 @@
 
 class Plugin {
 public:
+	//virtual Plugin();
+	//virtual ~Plugin();
     virtual void evalCycle() = 0;
     virtual bool result() = 0;
 };

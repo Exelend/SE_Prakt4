@@ -19,17 +19,17 @@ HeightLogic::~HeightLogic(){
 	delete process;
 }
 
-void HeightLogic::evalCycle(){
-	this->stateChecker();
-	this->worker();
+void Plugin::evalCycle(){
+	HeightLogic->stateChecker();
+	HeightLogic->worker();
 }
 
 void HeightLogic::getNewHardwarestatus(){
-	currentHeight = currentHeight = process->getHight();
+	currentHeight = process->getHight();
 }
 
-bool HeightLogic::result(){
-	return istRichtigsBauteil;
+bool Plugin::result(){
+	return HeightLogic->istRichtigsBauteil;
 }
 
 void HeightLogic::stateChecker(){
