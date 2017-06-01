@@ -16,7 +16,7 @@ FSM* FSMFactory::createFSM(){
        // Create Objects
     FestoProcessImage* processImage = new FestoMiniLab1008ProcessImage();
     FestoProcessAccess* processAccess = new FestoProcessAccess(processImage);
-    Plugin* plugin = new Plugin(processAccess);
+    Plugin* plugin = new HeightLogic(processAccess);
     FSM* fsm = new FSM(processAccess, plugin);
     return fsm;
 }
