@@ -12,7 +12,7 @@
 #define	FESTOSENSORS_H
 #include "time.h"
 
-class FestoProcessSensors {
+class FestoProcessSensors{
 public:
     virtual bool isItemAtBeginning(void) = 0;
     virtual bool isItemAtHightSensor(void) = 0;
