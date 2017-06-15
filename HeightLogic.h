@@ -5,7 +5,7 @@
 
 enum fsm_HeighLogic_states { BandHoehe, H1, H2, H3, H4, FalschesBauteil, RichtigesBauteil };
 
-class HeightLogic :  Plugin {
+class HeightLogic : public Plugin {
 private:
     FestoProcessAccess *process;
 public:
