@@ -7,6 +7,12 @@
 
 #include "HeightLogic.h"
 
+// {Minimum, Maximum, Mittelwert, Mitte_Min-Max, Tolleranz}
+    unsigned short tolleranz = 20;
+    unsigned short bandhoehe[] = {3776, 3769, 3773};
+    unsigned short hoehe1_3[] = {3457, 3358, 3405, 3408, 50};
+    unsigned short hoehe2[] = {3727, 3689, 3710};
+    unsigned short hoehe4[] = {3112, 3033, 3068};
 
 HeightLogic::HeightLogic(FestoProcessAccess *process){
 	this->process = process;

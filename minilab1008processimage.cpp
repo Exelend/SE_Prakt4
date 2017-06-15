@@ -12,6 +12,7 @@
 #include <cstdio>
 #include "minilab1008processimage.h"
 
+
 using namespace std;
 
 #ifndef SIL
@@ -35,6 +36,7 @@ FestoMiniLab1008ProcessImage::FestoMiniLab1008ProcessImage() {
     output_image = 0;
     initProcessImageLayer();
     updateProcessImage();
+
 }
 
 FestoMiniLab1008ProcessImage::~FestoMiniLab1008ProcessImage() {
@@ -69,6 +71,7 @@ void FestoMiniLab1008ProcessImage::updateProcessImage(void) {
 
 #endif
     process_image_change = process_image_old ^ process_image;
+
 }
 
 void FestoMiniLab1008ProcessImage::applyOutputToProcess(void) {

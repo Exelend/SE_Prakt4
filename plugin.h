@@ -12,8 +12,8 @@
 
 class Plugin {
 public:
-    virtual void evalCycle() = 0;
-    virtual bool result() = 0;
+    virtual void evalCycle(void)=0;
+    virtual bool result(void)=0;
 };
 
 #endif	/* PLUGIN_H */

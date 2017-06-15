@@ -18,6 +18,7 @@
 
 class FestoMiniLab1008ProcessImage : public FestoProcessImage {
 private:
+
     unsigned short process_image;
     unsigned short process_image_old;
     unsigned short process_image_change;
