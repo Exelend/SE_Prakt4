@@ -5,20 +5,19 @@
 
 enum fsm_HeighLogic_states { BandHoehe, H1, H2, H3, H4, FalschesBauteil, RichtigesBauteil };
 
-class HeightLogic {
+class HeightLogic :  Plugin {
 private:
     FestoProcessAccess *process;
 public:
     HeightLogic(FestoProcessAccess *process);
-    ~HeightLogic();
-    void evalCycle();
-    bool result();
+    ~HeightLogic(void);
+    void evalCycle(void);
+    bool result(void);
 private:
-    void stateChecker();
-    void getNewHardwarestatus();
-    void worker();
+    void stateChecker(void);
+    void getNewHardwarestatus(void);
+    void worker(void);
     fsm_HeighLogic_states currentState;
-
     unsigned short currentHeight;
     bool istRichtigsBauteil;
 };

@@ -26,12 +26,12 @@ HeightLogic::~HeightLogic(){
 }
 
 void HeightLogic::evalCycle(){
-	this->stateChecker();
-	this->worker();
+	stateChecker();
+	worker();
 }
 
 void HeightLogic::getNewHardwarestatus(){
-	currentHeight = currentHeight = process->getHight();
+	currentHeight = process->getHight();
 }
 
 bool HeightLogic::result(){
