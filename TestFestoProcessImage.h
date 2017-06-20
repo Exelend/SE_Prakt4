@@ -9,6 +9,7 @@
 #define TESTFESTOPROCESSIMAGE_H_
 
 #include "processimage.h"
+#include "fsm.h"
 
 class TestFestoProcessImage : public FestoProcessImage{
 
@@ -16,15 +17,22 @@ public:
 	TestFestoProcessImage(void);
 	virtual ~TestFestoProcessImage(void);
 
-	virtual void updateProcessImage(void)=0;
-	virtual void applyOutputToProcess(void)=0;
-	virtual unsigned char isBitSet(unsigned short bitMask)=0;
-	virtual unsigned char isBitPosEdge(unsigned short bitMask)=0;
-	virtual unsigned char isBitNegEdge(unsigned short bitMask)=0;
-	virtual void setBitInOutput(unsigned short bitMask)=0;
-	virtual void clearBitInOutput(unsigned short bitMask)=0;
-	virtual unsigned short hight()=0;
-	virtual void resetOutputs(void)=0;
+	void updateProcessImage(void);
+	void applyOutputToProcess(void);
+	unsigned char isBitSet(unsigned short bitMask);
+	unsigned char isBitPosEdge(unsigned short bitMask);
+	unsigned char isBitNegEdge(unsigned short bitMask);
+	void setBitInOutput(unsigned short bitMask);
+	void clearBitInOutput(unsigned short bitMask);
+	unsigned short hight();
+	void resetOutputs(void);
+
+	void setFSM(FSM* fsm);
+private:
+	int      bausteinWerte[1200][3]; // [x][0] Zeit; [x][1] Lichtschranke; [x][2] Hoehenwert;
+	int		 durchlauf;
+	int		 anzahlBausteinWerte;
+	FSM* 	 fsm;
 };
 
 

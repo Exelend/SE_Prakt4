@@ -13,12 +13,25 @@
 #include "minilab1008processimage.h"
 #include "plugin.h"
 #include "HeightLogic.h"
+#include "TestFestoProcessImage.h"
 
 FSM* FSMFactory::createFSM(){
        // Create Objects
+#ifdef SIL
+	FestoProcessImage* processImage = new TestFestoProcessImage();
+	FestoProcessAccess* processAccess = new FestoProcessAccess(processImage);
+	Plugin* plugin = new  HeightLogic(processAccess);
+	FSM* fsm = new FSM(processAccess, plugin);
+	processImage
+	return fsm;
+
+#endif // SIL
+
+#ifndef SIL
     FestoProcessImage* processImage = new FestoMiniLab1008ProcessImage();
     FestoProcessAccess* processAccess = new FestoProcessAccess(processImage);
     Plugin* plugin = new  HeightLogic(processAccess);
     FSM* fsm = new FSM(processAccess, plugin);
     return fsm;
+#endif // SIL
 }

@@ -40,16 +40,16 @@ void FSM::eval() {
 
 void FSM::evalEvents() {
     switch (currentState) {
-        case Start:
+        case Start: // 1
             currentState = Standby;
             break;
-        case Standby:
+        case Standby: // 2
             if (process->isButtonStartNegativeEdge()) {
                 currentState = Ready;
             }
             cout << "Standby";
             break;
-        case Ready:
+        case Ready: // 3
             if (process->isButtonStartNegativeEdge()) {
                 currentState = Standby;
             }
@@ -140,7 +140,7 @@ void FSM::evalEvents() {
 			if(plugin->result() == true){
 				currentState = Transport;
 			}	
-			if(plugin->result() == false){ // TODO Bedingung ändren!!!!!!!! (result ist immer False, solange nicht ein Richtiges Teil erkannt wurde!)
+			if(plugin->result() == false){ // TODO Bedingung aendern!!!!!!!! (result ist immer False, solange nicht ein Richtiges Teil erkannt wurde!)
 				currentState = ReverseTransport;
 			}	
 			if(process->isItemAtBeginning() || process->isItemAtMetalDetector() || process->isItemAtEnd()){

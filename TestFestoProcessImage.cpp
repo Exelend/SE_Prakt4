@@ -14,11 +14,10 @@
 
 using namespace std;
 
-int      bausteinWerte[1200][3]; // [x][0] Zeit; [x][1] Lichtschranke; [x][2] Hoehenwert;
-int		 durchlauf;
-int		 anzahlBausteinWerte;
 
-TestFestoProcessImage::TestFestoProcessImage(){
+
+TestFestoProcessImage :: TestFestoProcessImage(){
+	fsm = 0;
 	ifstream file;
 	char     filename[128];
 	durchlauf = 0;
@@ -96,12 +95,17 @@ unsigned char TestFestoProcessImage:: isBitPosEdge(unsigned short bitMask){
 }
 
 unsigned char TestFestoProcessImage:: isBitNegEdge(unsigned short bitMask){
-	if(durchlauf == 1){
-		return BUTTON_START_PRESSED;
+	if(durchlauf == 2 && bitMask == BUTTON_START_PRESSED){
+		return 1; // StartButton gedrückt
+	} else if((bitMask == ITEM_DETECTED) && ((durchlauf == 3) || (durchlauf >= 1199 && bitMask))){
+		return 1; // Bauteil am Anfang erkant
+	} else if(durchlauf >= 1199 && bitMask == ITEM_AT_END){
+		return 1; // Bauteil am Ende
 	} else {
 		return 0;
 	}
 }
+
 void TestFestoProcessImage:: setBitInOutput(unsigned short bitMask){
 
 }
@@ -112,6 +116,10 @@ void TestFestoProcessImage:: clearBitInOutput(unsigned short bitMask){
 
 void TestFestoProcessImage:: resetOutputs(void){
 
+}
+
+void TestFestoProcessImage :: setFSM(FSM* fsm){
+	this->fsm = fsm;
 }
 
 
