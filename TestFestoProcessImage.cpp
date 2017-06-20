@@ -17,6 +17,7 @@ using namespace std;
 
 
 TestFestoProcessImage :: TestFestoProcessImage(){
+	falschesBauteilErkannt = false;
 	fsm = 0;
 	ifstream file;
 	char     filename[128];
@@ -86,7 +87,17 @@ void TestFestoProcessImage:: applyOutputToProcess(void){
 }
 
 unsigned char TestFestoProcessImage:: isBitSet(unsigned short bitMask){
-	return 0;
+	if(durchlauf == 3 && bitMask == ITEM_DETECTED ){
+		return 0; // Active LOW!!!Bauteil am Anfang erkant
+	} else if(durchlauf >= 800 && bitMask == ITEM_AT_JUNCTION && fsm->currentState == Transport && fsm->plugin->result()){
+		return 1; //Active LOW!!!!! Bauteil okay -> zum Metalldetektor
+	} else if( bitMask == ITEM_IS_METTAL){
+		return 0; // Bauteil am Metalldetektor -> kein Metall
+	} else if( bitMask == ITEM_AT_END && fsm->currentState == NonMetalic){
+		return 0; // Active Low -> Bauteil zum Ende
+	} else { // TODO  0 bzw. 1 zurückgeben!!!
+		return 0;
+	}
 }
 
 unsigned char TestFestoProcessImage:: isBitPosEdge(unsigned short bitMask){
@@ -97,9 +108,7 @@ unsigned char TestFestoProcessImage:: isBitPosEdge(unsigned short bitMask){
 unsigned char TestFestoProcessImage:: isBitNegEdge(unsigned short bitMask){
 	if(durchlauf == 2 && bitMask == BUTTON_START_PRESSED){
 		return 1; // StartButton gedrückt
-	} else if((bitMask == ITEM_DETECTED) && ((durchlauf == 3) || (durchlauf >= 1199 && bitMask))){
-		return 1; // Bauteil am Anfang erkant
-	} else if(durchlauf >= 1199 && bitMask == ITEM_AT_END){
+	} else  if(durchlauf >= 1199 && bitMask == ITEM_AT_END){
 		return 1; // Bauteil am Ende
 	} else {
 		return 0;

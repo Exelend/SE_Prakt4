@@ -33,6 +33,7 @@ private:
 	int		 durchlauf;
 	int		 anzahlBausteinWerte;
 	FSM* 	 fsm;
+	bool     falschesBauteilErkannt;
 };
 
 

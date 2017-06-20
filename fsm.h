@@ -12,11 +12,16 @@
 #define	FSM_H
 #include "FestoProcessAccess.h"
 #include "plugin.h"
+#define SIL // Nur zum Testen einkommentieren!!!!!
 
 enum fsm_states { Start, Standby, Ready, Transport, MetalDetection, NonMetalic, Metalic, SlideReached, Error, EndReached, HeightDetection, ReverseTransport , StartReached };
 
 class FSM {
+
+public:
+#ifndef SIL
 private:
+#endif // SIL
     fsm_states currentState;
     FestoProcessAccess *process;
     Plugin* plugin;
@@ -27,7 +32,6 @@ public:
 private:
     void evalEvents();
     void evalState();
-private:
     void blinkGreen();
     void blinkRed();
 };
