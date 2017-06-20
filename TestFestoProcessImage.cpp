@@ -5,9 +5,12 @@
  *      Author: MaWi
  */
 
-#include "TestFestoProcessImage.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
+#include "TestFestoProcessImage.h"
+#include "iomasks.h"
+
 
 using namespace std;
 
@@ -50,7 +53,7 @@ TestFestoProcessImage::TestFestoProcessImage(){
 					subCharArray[j] = charArray[j+indexAlt];
 					j++;
 				}
-				bausteinWerte[i][k] = atoi (subCharArray);
+				bausteinWerte[i][k] = atoi(subCharArray);
 				indexAlt = j+2;
 			}
 			cout << pCharArray << endl;
@@ -63,12 +66,52 @@ TestFestoProcessImage::TestFestoProcessImage(){
 	}
 }
 
+TestFestoProcessImage::~TestFestoProcessImage(){
+
+}
+
 unsigned short TestFestoProcessImage::hight(){
 	durchlauf ++;
 	if(durchlauf > anzahlBausteinWerte){
 		throw std::out_of_range ("Test Durchgelaufen!");
 	}
 	return bausteinWerte[durchlauf][2];
+}
+
+void TestFestoProcessImage :: updateProcessImage(void){
+	durchlauf++;
+}
+
+void TestFestoProcessImage:: applyOutputToProcess(void){
+
+}
+
+unsigned char TestFestoProcessImage:: isBitSet(unsigned short bitMask){
+	return 0;
+}
+
+unsigned char TestFestoProcessImage:: isBitPosEdge(unsigned short bitMask){
+	return 0;
+
+}
+
+unsigned char TestFestoProcessImage:: isBitNegEdge(unsigned short bitMask){
+	if(durchlauf == 1){
+		return BUTTON_START_PRESSED;
+	} else {
+		return 0;
+	}
+}
+void TestFestoProcessImage:: setBitInOutput(unsigned short bitMask){
+
+}
+
+void TestFestoProcessImage:: clearBitInOutput(unsigned short bitMask){
+
+}
+
+void TestFestoProcessImage:: resetOutputs(void){
+
 }
 
 

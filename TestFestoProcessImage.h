@@ -12,8 +12,6 @@
 
 class TestFestoProcessImage : public FestoProcessImage{
 
-private:
-
 public:
 	TestFestoProcessImage(void);
 	virtual ~TestFestoProcessImage(void);
@@ -27,7 +25,6 @@ public:
 	virtual void clearBitInOutput(unsigned short bitMask)=0;
 	virtual unsigned short hight()=0;
 	virtual void resetOutputs(void)=0;
-
 };
 
 
