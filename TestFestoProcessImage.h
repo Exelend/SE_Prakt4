@@ -30,12 +30,13 @@ public:
 
     void setFSM(FSM* fsm);
 private:
-    int         bausteinWerte[1200][3]; // [x][0] Zeit; [x][1] Lichtschranke; [x][2] Hoehenwert;
+    int          bausteinWerte[1200][3]; // [x][0] Zeit; [x][1] Lichtschranke; [x][2] Hoehenwert;
     int		 durchlauf;
     int		 anzahlBausteinWerte;
     FSM* 	 fsm;
-    bool        falschesBauteilErkannt;
+    bool         falschesBauteilErkannt;
     HeightLogic* heightLogic;
+    int          endeZaehler;
 };
 
 

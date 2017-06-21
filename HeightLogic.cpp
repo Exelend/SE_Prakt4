@@ -6,6 +6,9 @@
  */
 
 #include "HeightLogic.h"
+#include <iostream>
+
+using namespace std;
 
 // {Minimum, Maximum, Mittelwert, Mitte_Min-Max, Tolleranz}
     unsigned short tolleranz = 20;
@@ -87,13 +90,15 @@ void HeightLogic::stateChecker(){
             }
             break;
         case RichtigesBauteil:
-            if(currentHeight >= bandhoehe[1]-tolleranz){
+            //cout << "Richtiges BT\n";
+            if(currentHeight >= bandhoehe[1]-tolleranz && process->isItemAtMetalDetector()){
                     currentState = BandHoehe;
             }
             break;
         case FalschesBauteil:
             if(process->isItemAtBeginning()){
                     currentState = BandHoehe;
+                    //cout << "Falsches BT\n";
             }
             break;
     }

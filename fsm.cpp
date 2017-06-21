@@ -83,7 +83,7 @@ void FSM::evalEvents() {
             } else {
                 currentState = NonMetalic;
             }
-            cout << "Metalldetektion";
+            cout << "Metalldetektion\n";
             break;
         case NonMetalic:
             if (process->isItemAtEnd()) {
