@@ -11,6 +11,7 @@
 #include <array>
 #include "TestFestoProcessImage.h"
 #include "iomasks.h"
+#include "HeightLogic.h"
 
 
 using namespace std;
@@ -114,10 +115,10 @@ unsigned char TestFestoProcessImage:: isBitSet(unsigned short bitMask){
 	if(durchlauf == 3 && bitMask == ITEM_DETECTED ){
 		return 0; // Active LOW!!!Bauteil am Anfang erkant
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == ReverseTransport) {
-		return 0; // Active Low! Bauteil-rï¿½cktransport -> StartReached
+		return 0; // Active Low! Bauteil-ruecktransport -> StartReached
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == StartReached){
-		return 1; // Active Low!! Bauteil zurï¿½ck am Start -> Ready
-	} else if(durchlauf >= 800 && bitMask == ITEM_AT_JUNCTION && fsm->currentState == Transport && fsm->plugin->result()){
+		return 1; // Active Low!! Bauteil zurueck am Start -> Ready
+	} else if((bitMask == ITEM_AT_JUNCTION) && (fsm->currentState == Transport) && (fsm->plugin->getState() == RichtigesBauteil)){
 		return 1; //Active LOW!!!!! Bauteil okay -> zum Metalldetektor
 	} else if( bitMask == ITEM_IS_METTAL){
 		return 0; // Bauteil am Metalldetektor -> kein Metall
