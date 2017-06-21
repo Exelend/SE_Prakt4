@@ -69,16 +69,16 @@ void HeightLogic::stateChecker(){
             }
             break;
         case H3:
-            if(currentHeight <= hoehe1_3 [0]+tolleranz && currentHeight >= hoehe1_3 [1]-tolleranz){
+            if(currentHeight <= hoehe1_3 [0]+tolleranz && currentHeight >= hoehe1_3[1] - tolleranz){
                     currentState = H3;
-            } else if(currentHeight <= hoehe4 [0]+tolleranz && currentHeight >= hoehe4 [1]-tolleranz){
+            } else if(currentHeight <= hoehe4 [0]+tolleranz && currentHeight >= hoehe4[1] - tolleranz){
                     currentState = H4;
             } else {
                     currentState = FalschesBauteil;
             }
             break;
         case H4:
-            if(currentHeight <= hoehe4 [0]+tolleranz && currentHeight >= hoehe4 [1]-tolleranz){
+            if(currentHeight <= hoehe4[0] + tolleranz && currentHeight >= hoehe4[1] - tolleranz){
                     currentState = H4;
             } else if(currentHeight >= bandhoehe[1]-tolleranz){
                     currentState = RichtigesBauteil;
@@ -123,4 +123,8 @@ void HeightLogic::worker(){
                 istRichtigsBauteil = false;
                 break;
     }
+}
+
+fsm_HeighLogic_states HeightLogic::getState(){
+    return currentState;
 }

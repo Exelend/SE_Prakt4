@@ -13,6 +13,7 @@ public:
     ~HeightLogic(void);
     void evalCycle(void);
     bool result(void);
+    fsm_HeighLogic_states getState(void);
 private:
     void stateChecker(void);
     void getNewHardwarestatus(void);
