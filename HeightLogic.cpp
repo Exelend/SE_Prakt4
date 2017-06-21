@@ -26,6 +26,7 @@ HeightLogic::~HeightLogic(){
 }
 
 void HeightLogic::evalCycle(){
+    getNewHardwarestatus();
     stateChecker();
     worker();
 }

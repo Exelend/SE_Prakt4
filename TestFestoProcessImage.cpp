@@ -55,18 +55,22 @@ TestFestoProcessImage :: TestFestoProcessImage(){
                     subCharArray[z] = '\0';
                 }
                 //std::fill(std::begin(subCharArray), std::end(subCharArray),0);
-                while(charArray[j] != ';' && charArray[j] != '\n' && j <30){
-                        subCharArray[j] = charArray[j];
+                int indexAlt = j;
+                while(charArray[j] != ';' && charArray[j] != '\n'  && j <30){
+                        subCharArray[j-indexAlt] = charArray[j];
+
                         j++;
                 }
                 bausteinWerte[i][k] = atoi(subCharArray);
-                j= j+2;
+                j++;
+                j++;
+                
             }
             cout << pCharArray << "\n";
             i++;
             anzahlBausteinWerte++;
         }
-        int kdk = 7;
+        
         cout << "auslesen fertig \n";
         for (int l= 0 ; l<anzahlBausteinWerte; l++) {
             cout << bausteinWerte[l][0] <<";"<< bausteinWerte[l][1] <<";"<< bausteinWerte[l][2] << "\n";
@@ -75,6 +79,7 @@ TestFestoProcessImage :: TestFestoProcessImage(){
             // Wenn die Datei nicht geoeffnet werden konnte,
             cout << "Datei nicht gefunden.\n";
     }
+    int kdk = 7;
 }
 
 TestFestoProcessImage::~TestFestoProcessImage(){
