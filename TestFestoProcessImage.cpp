@@ -28,7 +28,7 @@ TestFestoProcessImage :: TestFestoProcessImage(){
 	cout << "Dateinamen eingeben: ";
 	cin.getline(filename, 127);
 
-	// Datei öffnen
+	// Datei ï¿½ffnen
 	file.open(filename, ios::in);
 
 	if (file.good()){
@@ -81,7 +81,7 @@ unsigned short TestFestoProcessImage::hight(){
 void TestFestoProcessImage :: updateProcessImage(void){
 	durchlauf++;
 	if(durchlauf >= 900){
-		exit;
+		exit(0);
 	}
 }
 
@@ -93,9 +93,9 @@ unsigned char TestFestoProcessImage:: isBitSet(unsigned short bitMask){
 	if(durchlauf == 3 && bitMask == ITEM_DETECTED ){
 		return 0; // Active LOW!!!Bauteil am Anfang erkant
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == ReverseTransport) {
-		return 0; // Active Low! Bauteil-rücktransport -> StartReached
+		return 0; // Active Low! Bauteil-rï¿½cktransport -> StartReached
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == StartReached){
-		return 1; // Active Low!! Bauteil zurück am Start -> Ready
+		return 1; // Active Low!! Bauteil zurï¿½ck am Start -> Ready
 	} else if(durchlauf >= 800 && bitMask == ITEM_AT_JUNCTION && fsm->currentState == Transport && fsm->plugin->result()){
 		return 1; //Active LOW!!!!! Bauteil okay -> zum Metalldetektor
 	} else if( bitMask == ITEM_IS_METTAL){
@@ -117,8 +117,8 @@ unsigned char TestFestoProcessImage:: isBitPosEdge(unsigned short bitMask){
 }
 
 unsigned char TestFestoProcessImage:: isBitNegEdge(unsigned short bitMask){
-	if(durchlauf == 2 && bitMask == BUTTON_START_PRESSED){
-		return 1; // StartButton gedrückt
+	if(fsm->currentState == Standby && bitMask == BUTTON_START_PRESSED){
+		return 1; // StartButton gedrï¿½ckt
 	} else {
 		return 0;
 	}
