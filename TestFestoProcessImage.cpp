@@ -8,6 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <array>
 #include "TestFestoProcessImage.h"
 #include "iomasks.h"
 
@@ -32,34 +33,39 @@ TestFestoProcessImage :: TestFestoProcessImage(){
 	file.open(filename, ios::in);
 
 	if (file.good()){
-		// Wenn die Datei geoeffnet werden kann...
+            // Wenn die Datei geoeffnet werden kann...
 
-		// An den Anfang der Datei springen
-		file.seekg(0L, ios::beg);
-
-		int i = 0; // Datensatznumer
-		while (! file.eof()){
-			char charArray[30];
-			char* pCharArray = charArray;
-			// Die Datei zeilenweise auslesen
-			file.getline(pCharArray, 30);
-
-			// Chars in intArray ablegen
-			int indexAlt = 0;
-			for(int k = 0; k < 2; k++){
-				int j = 0;
-				char subCharArray[10];
-				while(charArray[j] != ';'){
-					subCharArray[j] = charArray[j+indexAlt];
-					j++;
-				}
-				bausteinWerte[i][k] = atoi(subCharArray);
-				indexAlt = j+2;
-			}
-			cout << pCharArray << "\n";
-			i++;
-			anzahlBausteinWerte++;
-		}
+            // An den Anfang der Datei springen
+            file.seekg(0L, ios::beg);
+            int i = 0; // Datensatznumer
+            while (! file.eof()){
+                char charArray[30];
+                char* pCharArray = charArray;
+                // Die Datei zeilenweise auslesen
+                file.getline(pCharArray, 30);
+                
+                // Chars in intArray ablegen
+                int indexAlt = 0;
+                for(int k = 0; k < 2; k++){
+                        int j = 0;
+                        //char subCharArray[10];
+                        char subCharArray[30];
+                        std::fill(std::begin(subCharArray), std::end(subCharArray),0);
+                        while(charArray[j] != ';'){
+                                subCharArray[j] = charArray[j+indexAlt];
+                                j++;
+                        }
+                        bausteinWerte[i][k] = atoi(subCharArray);
+                        indexAlt = j+2;
+                }
+                cout << pCharArray << "\n";
+                i++;
+                anzahlBausteinWerte++;
+                
+            }
+            for (int i= 0 ; i<800; i++) {
+                cout << bausteinWerte[i][0] <<";"<< bausteinWerte[i][1] <<";"<< bausteinWerte[i][2] << "\n";
+            }
 	}else{
 		// Wenn die Datei nicht geoeffnet werden konnte,
 		cout << "Datei nicht gefunden.\n";
@@ -80,9 +86,14 @@ unsigned short TestFestoProcessImage::hight(){
 
 void TestFestoProcessImage :: updateProcessImage(void){
 	durchlauf++;
-	if(durchlauf >= 900){
-		exit(0);
-	}
+	if(fsm->currentState == StartReached){
+            cout << "Falsches Bauteil!\n";
+            while(1){
+            }
+	} else if(fsm->currentState == EndReached){
+            cout << "Bauteil OK!";
+            while(1);        
+        }
 }
 
 void TestFestoProcessImage:: applyOutputToProcess(void){

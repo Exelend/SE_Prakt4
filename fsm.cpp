@@ -26,7 +26,7 @@ FSM::~FSM() {
 }
 
 void FSM::eval() {
-	//nur für SIL
+	//nur fï¿½r SIL
 
 
     process->updateInputs();
@@ -136,36 +136,36 @@ void FSM::evalEvents() {
 
 // Neuer Code anfang
             /*
-		case HeightDetection:
-			if(plugin->result() == true){
-				currentState = Transport;
-			}	
-			if(plugin->result() == false){ // TODO Bedingung aendern!!!!!!!! (result ist immer False, solange nicht ein Richtiges Teil erkannt wurde!)
-				currentState = ReverseTransport;
-			}	
-			if(process->isItemAtBeginning() || process->isItemAtMetalDetector() || process->isItemAtEnd()){
-				currentState = Error;
-			}
-			break;
-			*/
-		case ReverseTransport:
-			if(process->isItemAtBeginning()){
-				currentState = StartReached;
-			}	
-			if(process->isItemAtMetalDetector() || process->isItemAtEnd()){
-				currentState = Error;
-			}
-			cout << "Rücktransport\n";
-			break;
-		case StartReached:
-			if(!process->isItemAtBeginning()){
-				currentState = Ready;
-			}	
-			if(process->isItemAtMetalDetector() || process->isItemAtHightSensor() || process->isItemAtEnd()){
-				currentState = Error;
-			}
-			cout << "Bandanfang erreicht\n";
-			break;
+        case HeightDetection:
+                if(plugin->result() == true){
+                        currentState = Transport;
+                }	
+                if(plugin->result() == false){ // TODO Bedingung aendern!!!!!!!! (result ist immer False, solange nicht ein Richtiges Teil erkannt wurde!)
+                        currentState = ReverseTransport;
+                }	
+                if(process->isItemAtBeginning() || process->isItemAtMetalDetector() || process->isItemAtEnd()){
+                        currentState = Error;
+                }
+                break;
+                */
+        case ReverseTransport:
+                if(process->isItemAtBeginning()){
+                        currentState = StartReached;
+                }	
+                if(process->isItemAtMetalDetector() || process->isItemAtEnd()){
+                        currentState = Error;
+                }
+                cout << "Ruecktransport\n";
+                break;
+        case StartReached:
+                if(!process->isItemAtBeginning()){
+                        currentState = Ready;
+                }	
+                if(process->isItemAtMetalDetector() || process->isItemAtHightSensor() || process->isItemAtEnd()){
+                        currentState = Error;
+                }
+                cout << "Bandanfang erreicht\n";
+                break;
 // Neuer Code ende
         default:
             currentState = Start;
