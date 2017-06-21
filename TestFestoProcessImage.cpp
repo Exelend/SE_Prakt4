@@ -40,6 +40,7 @@ TestFestoProcessImage :: TestFestoProcessImage(){
             int i = 0; // Datensatznumer
             while (! file.eof()){
                 char charArray[30];
+                std::fill(std::begin(charArray), std::end(charArray),0);
                 char* pCharArray = charArray;
                 // Die Datei zeilenweise auslesen
                 file.getline(pCharArray, 30);
@@ -63,8 +64,8 @@ TestFestoProcessImage :: TestFestoProcessImage(){
                 anzahlBausteinWerte++;
                 
             }
-            for (int i= 0 ; i<800; i++) {
-                cout << bausteinWerte[i][0] <<";"<< bausteinWerte[i][1] <<";"<< bausteinWerte[i][2] << "\n";
+            for (int l= 0 ; l<anzahlBausteinWerte; l++) {
+                cout << bausteinWerte[l][0] <<";"<< bausteinWerte[l][1] <<";"<< bausteinWerte[l][2] << "\n";
             }
 	}else{
 		// Wenn die Datei nicht geoeffnet werden konnte,
