@@ -46,19 +46,21 @@ TestFestoProcessImage :: TestFestoProcessImage(){
             file.getline(pCharArray, 30);
 
             // Chars in intArray ablegen
-            int indexAlt = 0;
             int j = 0;
             for(int k = 0; k < 3; k++){
                     
-                    //char subCharArray[10];
-                    char subCharArray[30];
-                    std::fill(std::begin(subCharArray), std::end(subCharArray),0);
-                    while(charArray[j] != ';' && j <30){
-                            subCharArray[j] = charArray[j+indexAlt];
-                            j++;
-                    }
-                    bausteinWerte[i][k] = atoi(subCharArray);
-                    indexAlt = j+2;
+                //char subCharArray[10];
+                char subCharArray[30];
+                for (int z = 0; z < 30; z++){
+                    subCharArray[z] = '\0';
+                }
+                //std::fill(std::begin(subCharArray), std::end(subCharArray),0);
+                while((charArray[j] != ';' || charArray[j] != '\n') && j <30){
+                        subCharArray[j] = charArray[j];
+                        j++;
+                }
+                bausteinWerte[i][k] = atoi(subCharArray);
+                j= j+2;
             }
             cout << pCharArray << "\n";
             i++;
