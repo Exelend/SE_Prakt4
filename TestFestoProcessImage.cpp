@@ -55,7 +55,7 @@ TestFestoProcessImage :: TestFestoProcessImage(){
                     subCharArray[z] = '\0';
                 }
                 //std::fill(std::begin(subCharArray), std::end(subCharArray),0);
-                while((charArray[j] != ';' || charArray[j] != '\n') && j <30){
+                while(charArray[j] != ';' && charArray[j] != '\n' && j <30){
                         subCharArray[j] = charArray[j];
                         j++;
                 }
@@ -109,9 +109,9 @@ unsigned char TestFestoProcessImage:: isBitSet(unsigned short bitMask){
 	if(durchlauf == 3 && bitMask == ITEM_DETECTED ){
 		return 0; // Active LOW!!!Bauteil am Anfang erkant
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == ReverseTransport) {
-		return 0; // Active Low! Bauteil-r�cktransport -> StartReached
+		return 0; // Active Low! Bauteil-rï¿½cktransport -> StartReached
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == StartReached){
-		return 1; // Active Low!! Bauteil zur�ck am Start -> Ready
+		return 1; // Active Low!! Bauteil zurï¿½ck am Start -> Ready
 	} else if(durchlauf >= 800 && bitMask == ITEM_AT_JUNCTION && fsm->currentState == Transport && fsm->plugin->result()){
 		return 1; //Active LOW!!!!! Bauteil okay -> zum Metalldetektor
 	} else if( bitMask == ITEM_IS_METTAL){
@@ -134,7 +134,7 @@ unsigned char TestFestoProcessImage:: isBitPosEdge(unsigned short bitMask){
 
 unsigned char TestFestoProcessImage:: isBitNegEdge(unsigned short bitMask){
 	if(fsm->currentState == Standby && bitMask == BUTTON_START_PRESSED){
-		return 1; // StartButton gedr�ckt
+		return 1; // StartButton gedrï¿½ckt
 	} else {
 		return 0;
 	}
