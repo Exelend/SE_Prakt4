@@ -17,15 +17,15 @@ public:
 	TestFestoProcessImage(void);
 	virtual ~TestFestoProcessImage(void);
 
-	void updateProcessImage(void);
-	void applyOutputToProcess(void);
-	unsigned char isBitSet(unsigned short bitMask);
-	unsigned char isBitPosEdge(unsigned short bitMask);
-	unsigned char isBitNegEdge(unsigned short bitMask);
-	void setBitInOutput(unsigned short bitMask);
-	void clearBitInOutput(unsigned short bitMask);
-	unsigned short hight();
-	void resetOutputs(void);
+	virtual void updateProcessImage(void);
+	virtual void applyOutputToProcess(void);
+	virtual unsigned char isBitSet(unsigned short bitMask);
+	virtual unsigned char isBitPosEdge(unsigned short bitMask);
+	virtual unsigned char isBitNegEdge(unsigned short bitMask);
+	virtual void setBitInOutput(unsigned short bitMask);
+	virtual void clearBitInOutput(unsigned short bitMask);
+	virtual unsigned short hight();
+	virtual void resetOutputs(void);
 
 	void setFSM(FSM* fsm);
 private:

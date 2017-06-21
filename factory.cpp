@@ -18,11 +18,11 @@
 FSM* FSMFactory::createFSM(){
        // Create Objects
 #ifdef SIL
-	FestoProcessImage* processImage = new TestFestoProcessImage();
+	TestFestoProcessImage* processImage = new TestFestoProcessImage();
 	FestoProcessAccess* processAccess = new FestoProcessAccess(processImage);
 	Plugin* plugin = new  HeightLogic(processAccess);
 	FSM* fsm = new FSM(processAccess, plugin);
-	((TestFestoProcessImage)processImage).setFSM(fsm);
+	processImage->setFSM(fsm);
 	return fsm;
 
 #endif // SIL

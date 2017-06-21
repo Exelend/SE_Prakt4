@@ -47,7 +47,7 @@ void FSM::evalEvents() {
             if (process->isButtonStartNegativeEdge()) {
                 currentState = Ready;
             }
-            cout << "Standby";
+            cout << "Standby\n";
             break;
         case Ready: // 3
             if (process->isButtonStartNegativeEdge()) {
@@ -59,7 +59,7 @@ void FSM::evalEvents() {
             if (process->isItemAtHightSensor() || process->isItemAtMetalDetector()) {
                 currentState = Error;
             }
-            cout << "Ready";
+            cout << "Ready\n";
             break;
         case Transport:
             if (process->isItemAtMetalDetector()) {
@@ -75,7 +75,7 @@ void FSM::evalEvents() {
             if (process->isItemAtEnd()) {
                 currentState = Error;
             }
-            cout << "Transport";
+            cout << "Transport\n";
             break;
         case MetalDetection:
             if (process->isMetalDetected()) {
@@ -92,7 +92,7 @@ void FSM::evalEvents() {
             if (process->isItemAtBeginning() || process->isItemAtHightSensor()) {
                 currentState = Error;
             }
-            cout << "Kein Metall";
+            cout << "Kein Metall\n";
             break;
         case EndReached:
             if (process->isButtonStartNegativeEdge()) {
@@ -104,7 +104,7 @@ void FSM::evalEvents() {
             if (process->isItemAtMetalDetector() || process->isItemAtHightSensor()) {
                 currentState = Error;
             }
-            cout << "Am Ende";
+            cout << "Am Ende\n";
             break;
         case Metalic:
             if (process->hasItemPassedSlide()) {
@@ -113,7 +113,7 @@ void FSM::evalEvents() {
             if (process->isItemAtBeginning() || process->isItemAtHightSensor()) {
                 currentState = Error;
             }
-            cout << "Metall erkannt";
+            cout << "Metall erkannt\n";
             break;
         case SlideReached:
             if (process->isButtonStartNegativeEdge()) {
@@ -125,13 +125,13 @@ void FSM::evalEvents() {
             if (process->isItemAtEnd() || process->isItemAtHightSensor()) {
                 currentState = Error;
             }
-            cout << "Rutsche erreicht";
+            cout << "Rutsche erreicht\n";
             break;
         case Error:
             if (process->isButtonStartNegativeEdge()) {
                 currentState = Standby;
             }
-            cout << "Error";
+            cout << "Error\n";
             break;
 
 // Neuer Code anfang
@@ -155,7 +155,7 @@ void FSM::evalEvents() {
 			if(process->isItemAtMetalDetector() || process->isItemAtEnd()){
 				currentState = Error;
 			}
-			cout << "Rücktransport";
+			cout << "Rücktransport\n";
 			break;
 		case StartReached:
 			if(!process->isItemAtBeginning()){
@@ -164,7 +164,7 @@ void FSM::evalEvents() {
 			if(process->isItemAtMetalDetector() || process->isItemAtHightSensor() || process->isItemAtEnd()){
 				currentState = Error;
 			}
-			cout << "Bandanfang erreicht";
+			cout << "Bandanfang erreicht\n";
 			break;
 // Neuer Code ende
         default:
