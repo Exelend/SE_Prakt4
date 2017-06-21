@@ -25,6 +25,7 @@ TestFestoProcessImage :: TestFestoProcessImage(){
     char     filename[128];
     durchlauf = 0;
     anzahlBausteinWerte = 0;
+    heightLogic = 0;
 
     // Dateinamen einlesen
     cout << "Dateinamen eingeben: ";
@@ -84,7 +85,8 @@ TestFestoProcessImage :: TestFestoProcessImage(){
 }
 
 TestFestoProcessImage::~TestFestoProcessImage(){
-	delete fsm;
+    delete fsm;
+    delete heightLogic;    
 }
 
 unsigned short TestFestoProcessImage::hight(){
@@ -117,8 +119,8 @@ unsigned char TestFestoProcessImage:: isBitSet(unsigned short bitMask){
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == ReverseTransport) {
 		return 0; // Active Low! Bauteil-ruecktransport -> StartReached
 	} else if(bitMask == ITEM_DETECTED && fsm->currentState == StartReached){
-		return 1; // Active Low!! Bauteil zurueck am Start -> Ready
-	} else if((bitMask == ITEM_AT_JUNCTION) && (fsm->currentState == Transport) && (fsm->plugin->getState() == RichtigesBauteil)){
+		return 1; // Active Low!! Bauteil zurueck am Start -> Ready                                                                       
+	} else if((bitMask == ITEM_AT_JUNCTION) && (fsm->currentState == Transport) && heightLogic->getState() == RichtigesBauteil){
 		return 1; //Active LOW!!!!! Bauteil okay -> zum Metalldetektor
 	} else if( bitMask == ITEM_IS_METTAL){
 		return 0; // Bauteil am Metalldetektor -> kein Metall
@@ -160,6 +162,7 @@ void TestFestoProcessImage:: resetOutputs(void){
 
 void TestFestoProcessImage :: setFSM(FSM* fsm){
 	this->fsm = fsm;
+        this->heightLogic = dynamic_cast<HeightLogic*>(fsm->plugin);
 }
 
 
