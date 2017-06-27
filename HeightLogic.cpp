@@ -7,6 +7,8 @@
 
 #include "HeightLogic.h"
 #include <iostream>
+#include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -100,6 +102,10 @@ void HeightLogic::stateChecker(){
                     currentState = BandHoehe;
                     //cout << "Falsches BT\n";
             }
+            
+            ofstream fileO ("logfile.txt", std::ofstream::app);
+            fileO << clock() << " Bauteil fehlerhaft\n";
+            fileO.close();
             break;
     }
 }
